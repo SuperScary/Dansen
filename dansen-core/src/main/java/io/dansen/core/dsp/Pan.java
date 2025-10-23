@@ -1,6 +1,7 @@
 package io.dansen.core.dsp;
 
 import io.dansen.core.audio.AudioProcessor;
+import io.dansen.core.param.FloatParam;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -9,16 +10,17 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class Pan implements AudioProcessor {
     private final AudioProcessor input;
-    private final float pan; // -1..1
+    private final FloatParam pan; // -1..1
 
     @Override
     public void process(float[] left, float[] right, int frames) {
         input.process(left, right, frames);
-        float lGain = (float) Math.cos((pan + 1) * Math.PI / 4);
-        float rGain = (float) Math.sin((pan + 1) * Math.PI / 4);
         for (int i = 0; i < frames; i++) {
-            left[i] *= lGain;
-            right[i] *= rGain;
+          float p = Math.max(-1f, Math.min(1f, pan.step()));
+          float lGain = (float) Math.cos((p + 1) * Math.PI / 4);
+          float rGain = (float) Math.cos((p - 1) * Math.PI / 4);
+          left[i] *= lGain;
+          right[i] *= rGain;
         }
     }
 

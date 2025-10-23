@@ -1,52 +1,52 @@
 plugins {
-    id 'java'
-    id 'jacoco'
-    id 'com.diffplug.spotless' version '6.25.0'
+  id 'java'
+  id 'jacoco'
+  id 'com.diffplug.spotless' version '6.25.0'
 }
 
 
 java {
-    toolchain { languageVersion = JavaLanguageVersion.of(21) }
+  toolchain { languageVersion = JavaLanguageVersion.of(21) }
 }
 
 
 allprojects {
-    group = 'io.dansen'
-    version = '0.1.0-SNAPSHOT'
+  group = 'io.dansen'
+  version = '0.1.0-SNAPSHOT'
 
 
-    repositories { mavenCentral() }
+  repositories { mavenCentral() }
 }
 
 
 subprojects { subproj ->
-    apply plugin: 'java'
+  apply plugin: 'java'
 
 
-    dependencies {
-        testImplementation 'org.junit.jupiter:junit-jupiter:5.11.0'
-        testImplementation 'org.assertj:assertj-core:3.26.0'
-        testImplementation 'org.mockito:mockito-core:5.13.0'
-        compileOnly 'org.projectlombok:lombok:1.18.34'
-        annotationProcessor 'org.projectlombok:lombok:1.18.34'
-        testCompileOnly 'org.projectlombok:lombok:1.18.34'
-        testAnnotationProcessor 'org.projectlombok:lombok:1.18.34'
-        implementation 'org.slf4j:slf4j-api:2.0.16'
-        runtimeOnly 'ch.qos.logback:logback-classic:1.5.12'
-    }
+  dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.11.0'
+    testImplementation 'org.assertj:assertj-core:3.26.0'
+    testImplementation 'org.mockito:mockito-core:5.13.0'
+    compileOnly 'org.projectlombok:lombok:1.18.34'
+    annotationProcessor 'org.projectlombok:lombok:1.18.34'
+    testCompileOnly 'org.projectlombok:lombok:1.18.34'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.34'
+    implementation 'org.slf4j:slf4j-api:2.0.16'
+    runtimeOnly 'ch.qos.logback:logback-classic:1.5.12'
+  }
 
 
-    test { useJUnitPlatform() }
+  test { useJUnitPlatform() }
 }
 
 
 spotless {
-    java { googleJavaFormat() }
-    format('misc') {
-        target '.gitignore', '.gitattributes', '*.md', 'docs/**/*.md'
-        indentWithSpaces(2)
-        endWithNewline()
-    }
+  java { googleJavaFormat() }
+  format('misc') {
+    target '.gitignore', '.gitattributes', '*.md', 'docs/**/*.md'
+    indentWithSpaces(2)
+    endWithNewline()
+  }
 }
 
 

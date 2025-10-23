@@ -1,7 +1,10 @@
 plugins { id 'application' }
 
 
-dependencies { implementation project(':dansen-core') }
+dependencies {
+  implementation project(':dansen-core')
+  implementation project(':dansen-io')
+}
 
 
 application { mainClass = 'io.dansen.cli.Demo' }
