@@ -1,0 +1,10 @@
+plugins { id 'java-library' }
+
+
+java { withJavadocJar(); withSourcesJar() }
+
+
+/*
+publishing {
+    publications { mavenJava(MavenPublication) { from components.java } }
+}*/

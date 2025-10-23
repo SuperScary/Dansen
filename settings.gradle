@@ -1,0 +1,3 @@
+rootProject.name = 'Dansen'
+include 'dansen-core'
+include 'dansen-cli'
